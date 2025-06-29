@@ -1,0 +1,128 @@
+.App * {
+  color: #000;
+}
+
+.App {
+  border: 5px solid red;
+  min-height: 100svh;
+  min-height: 100vh;
+  padding: 2vw;
+  justify-content: flex-start;
+  gap: 10vw;
+}
+.App .heading {
+  font-size: 2vw;
+  color: #fff;
+}
+.App .form {
+  gap: 3vw;
+  background-color: #f1f1f1;
+  padding: 2vw;
+  border-radius: 10px;
+  align-items: flex-start;
+}
+.App .form .serviceProvider {
+  gap: 1vw;
+  align-items: flex-start;
+}
+.App .form .serviceProvider .radioWrapper {
+  justify-content: flex-start;
+  gap: 1vw;
+}
+.App .form .serviceProvider .serviceProviderTitle {
+  font-size: 1.3vw;
+}
+.App .form .inputFile,
+.App .form .serviceProvider .radioWrapper {
+  font-size: 1vw;
+}
+.App .form .submitBtn {
+  width: 100%;
+  font-size: 1vw;
+  padding: 0.5vw 2vw;
+  color: #fff;
+  background-color: red;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  align-self: center;
+}
+
+/* tablet view */
+@media all and (max-width: 1024px) {
+  .App {
+    gap: 25vw;
+    padding: 5vw;
+  }
+  .App .heading {
+    font-size: 4vw;
+  }
+  .App .form {
+    padding: 4vw;
+    gap: 10vw;
+  }
+  .App .form .serviceProvider {
+    gap: 3vw;
+  }
+  .App .form .serviceProvider .radioWrapper {
+    gap: 5vw;
+  }
+  .App .form .serviceProvider .serviceProviderTitle {
+    font-size: 4vw;
+  }
+  .App .form .inputFile,
+  .App .form .serviceProvider .radioWrapper {
+    font-size: 3vw;
+  }
+  .App .form .submitBtn {
+    font-size: 4vw;
+    padding: 0.8vw 3vw;
+  }
+}
+
+/* mobile view */
+@media all and (max-width: 480px) {
+  .App {
+    gap: 50vw;
+  }
+  .App .heading {
+    font-size: 6vw;
+  }
+  .App .form {
+    padding: 5vw;
+    gap: 15vw;
+  }
+  .App .form .serviceProvider {
+    gap: 6vw;
+  }
+  .App .form .serviceProvider .serviceProviderTitle {
+    font-size: 5vw;
+  }
+  .App .form .inputFile,
+  .App .form .serviceProvider .radioWrapper {
+    font-size: 4vw;
+  }
+  .App .form .submitBtn {
+    font-size: 5vw;
+    padding: 1vw 5vw;
+  }
+}
+
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
