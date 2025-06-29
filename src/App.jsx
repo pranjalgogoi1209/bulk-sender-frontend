@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import axios from "axios";
 
 export default function App() {
   const [serviceProvider, setServiceProvider] = useState("email");
@@ -38,30 +39,32 @@ export default function App() {
       return;
     }
 
-    setLoading(true); // Start loading
+    setLoading(true);
 
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("excel", file);
 
     const endpoint =
-      serviceProvider === "email" ? "/api/send-email" : "/api/send-whatsapp";
+      serviceProvider === "email" ? "/email/send" : "/whatsapp/send";
 
     try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        alert(`${serviceProvider.toUpperCase()} sent successfully.`);
-      } else {
-        const error = await response.text();
-        alert(`Failed to send ${serviceProvider.toUpperCase()}: ${error}`);
-      }
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}${endpoint}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data);
+      alert(`${serviceProvider.toUpperCase()} sent successfully.`);
     } catch (error) {
-      alert(`Error: ${error.message}`);
+      console.error("API error:", error);
+      const msg = error.response?.data?.error || "Unknown error occurred";
+      alert(`Failed to send ${serviceProvider.toUpperCase()}: ${msg}`);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -93,6 +96,7 @@ export default function App() {
                 checked={serviceProvider === "whatsapp"}
                 onChange={handleServiceChange}
                 style={{ marginRight: ".5vw" }}
+                disabled
               />
               WhatsApp
             </label>
